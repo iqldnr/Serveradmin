@@ -1,12 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="utf-8">
+<title>Basic Page Structure</title>
 </head>
 <body>
-    <h1>JENKINS WORKS</h1>
+<h1>Trucorp-web-2.0</h1>
+<?php
+$ip="172.18.0.2";
+$name="root";
+$pass="root";
+$dbn="Trucorp";
+$con = mysqli_connect($ip,$name,$pass,$dbn);
+
+$sql = "SELECT ID, Nama, Alamat, Jabatan FROM users";
+$result = $con->query($sql);
+
+if (mysqli_num_rows($result) > 0) {
+
+  while($row = mysqli_fetch_assoc($result)) {
+    echo "ID: " . $row["ID"]. " - Nama: " . $row["Nama"]. " - Alamat: " . $row["Alamat"]. " - Jabatan: " . $row["Jabatan"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+
+$con->close();
+
+?>
 </body>
 </html>
